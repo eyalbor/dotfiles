@@ -68,7 +68,7 @@ local function configure_defaults()
   defaults_configured = true
 
   vim.lsp.config("*", {
-    on_attach = require("elentok.lsp-utils").on_attach,
+    on_attach = require("eyal.lsp-utils").on_attach,
   })
 end
 

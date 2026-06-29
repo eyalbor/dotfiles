@@ -2,7 +2,7 @@
 version: "2"
 services:
   base:
-    image: elentok/dotfiles
+    image: eyalbor/dotfiles
 
   dev:
     extends: base

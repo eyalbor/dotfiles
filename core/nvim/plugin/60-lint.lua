@@ -13,7 +13,7 @@ local function load_nvim_lint()
   }
 
   vim.api.nvim_create_autocmd({ "InsertLeave", "BufWritePost" }, {
-    group = vim.api.nvim_create_augroup("Elentok_Lint", {}),
+    group = vim.api.nvim_create_augroup("Eyal_Lint", {}),
     callback = function() lint.try_lint() end,
   })
 

@@ -1,8 +1,7 @@
 #!/usr/bin/env fish
 
-git config github.user elentok
-git config user.name 'David Elentok'
-git config user.email '3david@gmail.com'
+git config github.user eyalbor
+git config user.name 'Eyal Borovsky'
 
 set origin (git config remote.origin.url)
 

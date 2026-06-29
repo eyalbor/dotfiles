@@ -14,7 +14,7 @@
 #
 # Example config file:
 #
-#   git@github.com:elentok/dotfiles=~/.dotfiles
+#   git@github.com:eyalbor/dotfiles=~/.dotfiles
 #
 
 set -euo pipefail

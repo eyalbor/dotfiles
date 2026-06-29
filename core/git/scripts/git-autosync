@@ -18,12 +18,12 @@ main() {
 }
 
 check-if-autosync-is-enabled() {
-  if [ "$(git config --local --get elentok.autosync)" == "true" ]; then
+  if [ "$(git config --local --get eyal.autosync)" == "true" ]; then
     return
   fi
 
   if dotf-confirm "Autosync is not enabled for this repo, enable?"; then
-    git config --local --add elentok.autosync true
+    git config --local --add eyal.autosync true
     return
   fi
 

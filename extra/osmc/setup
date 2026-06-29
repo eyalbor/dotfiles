@@ -15,7 +15,7 @@ fix-smb() {
   fi
 
   mv smb.conf smb-original.conf
-  curl https://raw.githubusercontent.com/elentok/dotfiles/master/plugins/osmc/smb.conf > smb.conf
+  curl https://raw.githubusercontent.com/eyalbor/dotfiles/main/extra/osmc/smb.conf > smb.conf
   echo "  replaced ~/.smb/smb.conf - you need to reboot"
 }
 

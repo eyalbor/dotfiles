@@ -5,6 +5,6 @@ require("config.keymaps")
 require("config.lsp")
 require("config.colors")
 
-require("elentok.dotplugins")
-require("elentok.slack")
-if vim.g.neovide then require("elentok.neovide") end
+require("eyal.dotplugins")
+require("eyal.slack")
+if vim.g.neovide then require("eyal.neovide") end

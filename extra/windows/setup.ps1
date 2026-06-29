@@ -28,9 +28,8 @@ $DOTF = Resolve-Path (Join-Path $PSScriptRoot '..')
 $gitconfig = Join-Path $DOTF 'core/git/gitconfig'
 git config --global include.path $gitconfig
 git config --global core.autocrlf false
-git config --global user.name 'David Elentok'
-git config --global user.email '3david@gmail.com'
-git config --global github.user 'elentok'
+git config --global user.name 'Eyal Borovsky'
+git config --global github.user 'eyalbor'
 
 . powershell\setup.ps1
 . nvim.ps1
