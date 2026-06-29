@@ -1,0 +1,9 @@
+{
+  "name": "jenkins",
+  "description": "Collection of skills for Jenkins CI/CD: analyze build logs, detect failures, and identify root causes",
+  "version": "1.0.0",
+  "author": {
+    "name": "Eyal Borovsky",
+    "email": "eyalbor@gmail.com"
+  }
+}

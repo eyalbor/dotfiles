@@ -1,0 +1,357 @@
+---
+name: shell-scripting-standards
+description: Shell scripting standards following ShellCheck recommendations and POSIX best practices for Bash scripts. Covers script headers, variables, conditionals, functions, error handling, loops, and input parsing. Use when writing or reviewing shell scripts.
+---
+
+# Shell Scripting Standards
+
+These rules follow ShellCheck recommendations and POSIX best practices for Bash scripts.
+
+## Script Header
+
+### Always Include Shebang and Set Options
+```bash
+#!/usr/bin/env bash
+#
+# Script description here
+# Usage: script.sh [options] <arguments>
+#
+
+set -euo pipefail
+IFS=$'\n\t'
+```
+
+### Bash Strict Mode Options
+- `set -e`: Exit immediately on error
+- `set -u`: Treat unset variables as errors
+- `set -o pipefail`: Fail on pipe errors
+- `IFS=$'\n\t'`: Safer word splitting
+
+```bash
+# Alternative: Individual options for clarity
+set -o errexit   # Exit on error
+set -o nounset   # Error on undefined variables
+set -o pipefail  # Fail pipe on first error
+```
+
+## Variables
+
+### Quote Variables
+```bash
+# Good: Always quote variables
+echo "$variable"
+cp "$source" "$destination"
+if [[ -f "$file" ]]; then
+
+# Bad: Unquoted variables break on spaces
+echo $variable
+cp $source $destination
+```
+
+### Use Curly Braces for Clarity
+```bash
+# Good: Clear variable boundaries
+echo "${name}_suffix"
+echo "${array[@]}"
+
+# Bad: Ambiguous
+echo "$name_suffix"  # Tries to expand $name_suffix
+```
+
+### Default Values
+```bash
+# Default if unset or empty
+name="${1:-default_value}"
+
+# Default only if unset
+name="${1-default_value}"
+
+# Error if unset
+name="${1:?Error: name is required}"
+```
+
+## Conditionals
+
+### Use [[ ]] for Tests
+```bash
+# Good: [[ is safer and more powerful
+if [[ -f "$file" ]]; then
+    echo "File exists"
+fi
+
+if [[ "$string" == "value" ]]; then
+    echo "Match"
+fi
+
+if [[ "$string" =~ ^[0-9]+$ ]]; then
+    echo "Is numeric"
+fi
+
+# Bad: [ is POSIX but has gotchas
+if [ -f $file ]; then  # Breaks on spaces in filename
+```
+
+### Common Test Operators
+```bash
+# File tests
+[[ -e "$path" ]]    # Exists
+[[ -f "$path" ]]    # Is regular file
+[[ -d "$path" ]]    # Is directory
+[[ -r "$path" ]]    # Is readable
+[[ -w "$path" ]]    # Is writable
+[[ -x "$path" ]]    # Is executable
+[[ -s "$path" ]]    # Is non-empty
+
+# String tests
+[[ -z "$var" ]]     # Is empty
+[[ -n "$var" ]]     # Is non-empty
+[[ "$a" == "$b" ]]  # Equal
+[[ "$a" != "$b" ]]  # Not equal
+
+# Numeric comparisons
+[[ "$a" -eq "$b" ]] # Equal
+[[ "$a" -ne "$b" ]] # Not equal
+[[ "$a" -lt "$b" ]] # Less than
+[[ "$a" -gt "$b" ]] # Greater than
+```
+
+## Functions
+
+### Function Definition
+```bash
+# Good: Clear function definition with local variables
+function process_file() {
+    local file="$1"
+    local output="${2:-/tmp/output}"
+
+    if [[ ! -f "$file" ]]; then
+        echo "Error: File not found: $file" >&2
+        return 1
+    fi
+
+    # Process file...
+    return 0
+}
+
+# Call function
+if ! process_file "$input_file" "$output_dir"; then
+    echo "Processing failed"
+    exit 1
+fi
+```
+
+### Use Local Variables
+```bash
+function my_function() {
+    local name="$1"
+    local -r constant="immutable"  # readonly local
+    local -i count=0               # integer
+    local -a array=()              # array
+
+    # ...
+}
+```
+
+## Error Handling
+
+### Check Command Results
+```bash
+# Good: Check return codes
+if ! command_that_might_fail; then
+    echo "Error: Command failed" >&2
+    exit 1
+fi
+
+# Or use || for inline handling
+command || { echo "Failed" >&2; exit 1; }
+```
+
+### Cleanup with trap
+```bash
+#!/usr/bin/env bash
+set -euo pipefail
+
+# Create temp file
+TEMP_FILE=$(mktemp)
+
+# Cleanup function
+cleanup() {
+    local exit_code=$?
+    rm -f "$TEMP_FILE"
+    exit "$exit_code"
+}
+
+# Register cleanup on exit
+trap cleanup EXIT
+
+# Script continues...
+echo "Working with $TEMP_FILE"
+```
+
+### Error Output
+```bash
+# Good: Send errors to stderr
+echo "Error: Something went wrong" >&2
+
+# Good: Error function
+error() {
+    echo "Error: $*" >&2
+}
+
+die() {
+    error "$@"
+    exit 1
+}
+
+# Usage
+[[ -f "$config" ]] || die "Config file not found: $config"
+```
+
+## Loops
+
+### Safe Iteration
+```bash
+# Good: Iterate over array elements
+for item in "${array[@]}"; do
+    echo "$item"
+done
+
+# Good: Iterate over files safely
+while IFS= read -r -d '' file; do
+    echo "Processing: $file"
+done < <(find . -type f -name "*.txt" -print0)
+
+# Bad: Word splitting issues
+for file in $(ls *.txt); do  # Breaks on spaces
+```
+
+### Read Lines from File
+```bash
+# Good: Read file line by line
+while IFS= read -r line; do
+    echo "$line"
+done < "$file"
+
+# Read from command output
+while IFS= read -r line; do
+    echo "$line"
+done < <(some_command)
+```
+
+## Input Handling
+
+### Parse Command Line Arguments
+```bash
+#!/usr/bin/env bash
+set -euo pipefail
+
+# Default values
+verbose=false
+output_file=""
+
+# Usage function
+usage() {
+    cat << EOF
+Usage: $(basename "$0") [OPTIONS] <input_file>
+
+Options:
+    -v, --verbose    Enable verbose output
+    -o, --output     Output file path
+    -h, --help       Show this help message
+
+EOF
+}
+
+# Parse arguments
+while [[ $# -gt 0 ]]; do
+    case "$1" in
+        -v|--verbose)
+            verbose=true
+            shift
+            ;;
+        -o|--output)
+            output_file="$2"
+            shift 2
+            ;;
+        -h|--help)
+            usage
+            exit 0
+            ;;
+        -*)
+            echo "Unknown option: $1" >&2
+            usage >&2
+            exit 1
+            ;;
+        *)
+            input_file="$1"
+            shift
+            ;;
+    esac
+done
+
+# Validate required arguments
+if [[ -z "${input_file:-}" ]]; then
+    echo "Error: Input file required" >&2
+    usage >&2
+    exit 1
+fi
+```
+
+## Best Practices
+
+### Portable Commands
+```bash
+# Use portable options when possible
+grep -E "pattern"      # Instead of egrep (deprecated)
+sed -E "s/a/b/"        # Extended regex (portable)
+
+# Check command availability
+if ! command -v docker &> /dev/null; then
+    echo "Docker is required but not installed" >&2
+    exit 1
+fi
+```
+
+### Safe Temporary Files
+```bash
+# Good: Use mktemp
+temp_file=$(mktemp)
+temp_dir=$(mktemp -d)
+
+# Bad: Predictable temp files (security risk)
+temp_file="/tmp/my_script_temp"
+```
+
+### Logging
+```bash
+# Simple logging function
+log() {
+    local level="$1"
+    shift
+    echo "[$(date '+%Y-%m-%d %H:%M:%S')] [$level] $*" >&2
+}
+
+log_info() { log "INFO" "$@"; }
+log_warn() { log "WARN" "$@"; }
+log_error() { log "ERROR" "$@"; }
+
+# Usage
+log_info "Starting process"
+log_error "Something failed"
+```
+
+### ShellCheck Compliance
+```bash
+# Run shellcheck on all scripts
+# Install: apt install shellcheck / brew install shellcheck
+shellcheck script.sh
+
+# Disable specific warnings (with justification)
+# shellcheck disable=SC2059
+printf "$format" "$value"
+
+# Source directive for included files
+# shellcheck source=./lib/common.sh
+source "${SCRIPT_DIR}/lib/common.sh"
+```
+

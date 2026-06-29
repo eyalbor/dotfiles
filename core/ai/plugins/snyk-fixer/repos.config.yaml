@@ -1,0 +1,11 @@
+# Repository configuration
+# - name: project display name
+# - repository: SSH Git URL (e.g. git@github.com:owner/repo.git)
+# - disabled: when true, skip running the process for this repo
+# - verify_command: command run in repo root before creating PR (e.g. npm run verify, npm test, make test)
+
+repositories:
+  # - name: example-repo
+  #   repository: git@github.com:owner/repo.git
+  #   disabled: true
+  #   verify_command: npm test

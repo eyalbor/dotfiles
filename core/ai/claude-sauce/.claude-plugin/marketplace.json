@@ -1,0 +1,67 @@
+{
+  "name": "claude-sauce",
+  "owner": {
+    "name": "Eyal Borovsky",
+    "email": "eyalbor@gmail.com"
+  },
+  "metadata": {
+    "description": "Claude Code skills collection",
+    "version": "1.0.0"
+  },
+  "plugins": [
+    {
+      "name": "github-enterprise",
+      "description": "Collection of skills for Github enterprise",
+      "source": "./plugins/github-enterprise",
+      "strict": false
+    },
+    {
+      "name": "jenkins",
+      "description": "Collection of skills for Jenkins CI/CD: analyze build logs, detect failures, and identify root causes",
+      "source": "./plugins/jenkins",
+      "strict": false
+    },
+    {
+      "name": "bedrock-usage",
+      "description": "AWS Bedrock usage tracking: show costs from Cost Explorer (/bedrock-usage) and enable CloudWatch logging (/bedrock-enable-logging)",
+      "source": "./plugins/bedrock-usage",
+      "strict": false
+    },
+    {
+      "name": "test-manager",
+      "description": "Test management commands: generate, control and modify testing lifecycle within a project",
+      "source": "./plugins/test-manager",
+      "strict": false
+    },
+    {
+      "name": "prompt-boost",
+      "description": "Collection of skills for Prompt Boosting",
+      "source": "./plugins/prompt-boost",
+      "strict": false
+    },
+    {
+      "name": "codacy",
+      "description": "Collection of skills for Codacy code quality: fetch issues from PRs, analyze code quality, and resolve issues",
+      "source": "./plugins/codacy",
+      "strict": false
+    },
+    {
+      "name": "code-assist",
+      "description": "Collection of skills for code assistance tools, such as code reviewer, pull request summary author, and more...",
+      "source": "./plugins/code-assist",
+      "strict": false
+    },
+    {
+      "name": "sauce-statusline",
+      "description": "Claude Code statusline installer: sets up a custom status bar showing model, cost, tokens, context usage, and git branch",
+      "source": "./plugins/sauce-statusline",
+      "strict": false
+    },
+	{
+	  "name": "reference-manager",
+	  "description": "Check and update reference documentation for recent code changes",
+	  "source": "./plugins/reference-manager",
+	  "strict": false
+	}
+  ]
+}

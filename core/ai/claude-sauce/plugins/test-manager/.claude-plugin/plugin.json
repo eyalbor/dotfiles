@@ -1,0 +1,9 @@
+{
+  "name": "test-manager",
+  "description": "Test management commands: generate, control and modify testing lifecycle within a project",
+  "version": "1.4.0",
+  "author": {
+    "name": "Eyal Borovsky",
+    "email": "eyalbor@gmail.com"
+  }
+}

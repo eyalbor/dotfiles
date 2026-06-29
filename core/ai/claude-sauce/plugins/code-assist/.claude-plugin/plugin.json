@@ -1,0 +1,9 @@
+{
+  "name": "code-assist",
+  "description": "Collection of skills for code assistance tools, such as code reviewer, pull request summary author, and more...",
+  "version": "2.0.0",
+  "author": {
+    "name": "<AUTHOR_NAME>",
+    "email": "<AUTHOR_EMAIL>"
+  }
+}

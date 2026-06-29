@@ -1,0 +1,9 @@
+{
+  "name": "core",
+  "description": "Core Claude Sauce utilities and cross-plugin capabilities",
+  "version": "1.0.0",
+  "author": {
+    "name": "Claude Sauce Team",
+    "email": "noreply@claudesauce.com"
+  }
+}

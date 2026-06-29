@@ -1,0 +1,9 @@
+{
+  "name": "bedrock-usage",
+  "description": "AWS Bedrock usage tracking: show costs from Cost Explorer (/bedrock-usage) and enable CloudWatch logging (/bedrock-enable-logging)",
+  "version": "1.2.0",
+  "author": {
+    "name": "Eyal Borovsky",
+    "email": "eyalbor@gmail.com"
+  }
+}

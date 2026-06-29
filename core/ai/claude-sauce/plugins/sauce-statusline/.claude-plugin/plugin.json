@@ -1,0 +1,9 @@
+{
+  "name": "sauce-statusline",
+  "description": "Claude Code statusline installer: sets up a custom status bar showing model, cost, tokens, context usage, and git branch",
+  "version": "1.0.0",
+  "author": {
+    "name": "Eyal Borovsky",
+    "email": "eyalbor@gmail.com"
+  }
+}
