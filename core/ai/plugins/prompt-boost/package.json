@@ -1,0 +1,35 @@
+{
+  "name": "prompt-boost",
+  "version": "1.0.0",
+  "description": "Multi-platform prompt enhancement tool for Cursor IDE and Claude Code",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "methodology:generate": "tsx scripts/generate-methodology-docs.ts",
+    "methodology:validate": "tsx scripts/validate-methodology.ts",
+    "prebuild": "npm run methodology:generate"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/eyalbor/prompt-boost.git"
+  },
+  "keywords": [
+    "prompt-engineering",
+    "cursor",
+    "claude-code",
+    "ai",
+    "llm"
+  ],
+  "author": "Eyal Borovsky",
+  "license": "ISC",
+  "type": "module",
+  "engines": {
+    "node": ">=22.13.0"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "@types/node": "^25.0.3",
+    "tsx": "^4.21.0",
+    "typescript": "^5.9.3"
+  }
+}

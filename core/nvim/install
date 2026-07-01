@@ -11,7 +11,7 @@ dfl shell "Installing plugins..." -- \
   nvim --headless "+lua vim.pack.update(nil, { target = 'lockfile'})" +qa
 
 dfl shell "Installing treesitter parsers..." -- \
-  nvim --headless "+lua require('elentok.treesitter-parsers')" +qa
+  nvim --headless "+lua require('eyal.treesitter-parsers')" +qa
 
 dfl shell "Installing Mason tools..." -- \
   nvim --headless "+lua require('config.mason').install_sync()" +qa

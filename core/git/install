@@ -42,14 +42,19 @@ write-to-gitconfig() {
 }
 
 setup_git_user() {
-  if [ -z "$(git config --global --includes user.name)" ]; then
-    git_username="$(dfl ask 'Git username?' 'David Elentok')"
-    git config --global user.name "$git_username"
-  fi
+  local dotlocal_gitconfig="$HOME/.dotlocal/gitconfig"
+  mkdir -p "$(dirname "$dotlocal_gitconfig")"
 
-  if [ -z "$(git config --global --includes user.email)" ]; then
-    git_email="$(ask 'Git email?' '3david@gmail.com')"
-    git config --global user.email "$git_email"
+  if [ ! -f "$dotlocal_gitconfig" ] || [ -z "$(git config -f "$dotlocal_gitconfig" user.email 2>/dev/null)" ]; then
+    git_username="$(dfl ask 'Git username?' 'Eyal Borovsky')"
+    git_email="$(ask 'Git email?' 'you@gmail.com')"
+    cat >"$dotlocal_gitconfig" <<EOF
+[user]
+  name = $git_username
+  email = $git_email
+[github]
+  user = eyalbor
+EOF
   fi
 }
 

@@ -1,4 +1,4 @@
-# Elentok Zsh Prompt
+# Eyal Zsh Prompt
 
 # Setup {{{1
 

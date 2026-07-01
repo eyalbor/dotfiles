@@ -29,5 +29,5 @@ require("lualine").setup({
   },
   winbar = { lualine_b = { filename }, lualine_c = { "navic" } },
   inactive_winbar = { lualine_b = { filename }, lualine_c = { "navic" } },
-  extensions = { require("elentok.lualine-oil-extension") },
+  extensions = { require("eyal.lualine-oil-extension") },
 })

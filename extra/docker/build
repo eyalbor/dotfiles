@@ -1,4 +1,4 @@
 #!/usr/bin/env bash
 
 cd $DOTF
-docker build -t elentok/dotfiles:latest .
+docker build -t eyalbor/dotfiles:latest .

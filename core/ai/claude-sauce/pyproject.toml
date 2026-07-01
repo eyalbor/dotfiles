@@ -1,0 +1,28 @@
+[[tool.poetry.source]]
+name = "artifactory-cloud"
+priority = "primary"
+
+[tool.poetry]
+name = "cloude-suace"
+version = "1.0.0"
+description = ""
+authors = ["<AUTHOR_NAME> <<AUTHOR_EMAIL>>"]
+readme = "README.md"
+package-mode = false
+
+[tool.poetry.group.dev.dependencies]
+mockito = "*"
+pytest-xdist = ">=3.7"
+
+
+[tool.poetry.dependencies]
+python = "^3.13"
+# note that boto3 and botocore are not packed sicne they are provided by aws python runtime.
+# nevertheless we limit the version since boto3 has lots of version which leads to unreasonably high resolve time.
+# Locking the version of the dependencies to improve the lock time
+boto3 = "^1.35.76"
+botocore = "^1.35.76"
+
+[build-system]
+requires = ["poetry-core>=1.9.0"]
+build-backend = "poetry.core.masonry.api"

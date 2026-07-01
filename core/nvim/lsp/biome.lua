@@ -1,4 +1,4 @@
-local utils = require("elentok.utils")
+local utils = require("eyal.utils")
 
 vim.g.biome_cmd = "biome"
 local config_file = utils.findfiles({ "biome.json", "biome.jsonc" })

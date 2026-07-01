@@ -1,16 +1,18 @@
-# elentok's dotfiles
+# Eyal's dotfiles
+
+Forked from [elentok/dotfiles](https://github.com/elentok/dotfiles).
 
 To install run:
 
 ```bash
-curl -L https://github.com/elentok/dotfiles/raw/master/online_install.sh | bash
+curl -L https://github.com/eyalbor/dotfiles/raw/main/online_install.sh | bash
 ```
 
-by default it will clone the repository from "<https://github.com/elentok/dotfiles>", to use ssh run
+By default it will clone the repository from "<https://github.com/eyalbor/dotfiles>". To use SSH run
 this:
 
 ```bash
-curl -L https://github.com/elentok/dotfiles/raw/master/online_install.sh | bash -s use-ssh
+curl -L https://github.com/eyalbor/dotfiles/raw/main/online_install.sh | bash -s use-ssh
 ```
 
 ## Documentation
@@ -27,8 +29,10 @@ Use `~/.dotlocal/gitconfig`:
 
 ```gitconfig
 [user]
-  name = Your Name
+  name = Eyal Borovsky
   email = you@gmail.com
 [github]
-  user = your-github-user
+  user = eyalbor
 ```
+
+Personal name and email are not stored in this repo — keep them in `~/.dotlocal/gitconfig` only.

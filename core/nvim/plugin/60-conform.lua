@@ -1,4 +1,4 @@
-local utils = require("elentok.utils")
+local utils = require("eyal.utils")
 
 local function typescript_formatter()
   if utils.hasfile({ "deno.json", "deno.jsonc", "biome.json", "biome.jsonc" }) then

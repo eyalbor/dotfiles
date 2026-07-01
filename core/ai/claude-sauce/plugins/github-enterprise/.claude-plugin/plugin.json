@@ -1,0 +1,9 @@
+{
+  "name": "github-enterprise",
+  "description": "Collection of skills for Github enterprise",
+  "version": "1.0.0",
+  "author": {
+    "name": "Eyal Borovsky",
+    "email": "eyalbor@gmail.com"
+  }
+}

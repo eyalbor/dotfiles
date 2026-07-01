@@ -1,0 +1,6 @@
+.claude
+__pycache__
+.idea
+
+# jenkins-console-analyzer skill output
+analysis_workspace/

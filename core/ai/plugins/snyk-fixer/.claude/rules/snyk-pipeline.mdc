@@ -1,0 +1,18 @@
+---
+description: When the user asks to fix Snyk issues for repos or run the full pipeline (clone, scan, fix, create PRs), delegate to the snyk-fix-and-pr subagent.
+alwaysApply: true
+---
+
+# Snyk fix-and-PR pipeline (use subagent)
+
+When the user asks to **fix Snyk issues for repos**, **run the full pipeline**, **clone, scan, fix, and create PRs**, or similar:
+
+1. **Do not** run clone / scan / fix / PR steps yourself in the main agent.
+2. **Delegate to the snyk-fix-and-pr subagent** so it runs in its own context and executes the full pipeline using the project skills and scripts.
+
+**How to invoke the subagent:**
+
+- Use **/snyk-fix-and-pr** in your prompt (e.g. "/snyk-fix-and-pr run the full pipeline"), or
+- Ask explicitly: "Use the snyk-fix-and-pr subagent to fix Snyk issues for the configured repos."
+
+The subagent is defined in `.claude/agents/snyk-fix-and-pr.md`. It runs Phase 1 (clone) → Phase 2 (discover + Snyk scan) → Phase 3 (fix per project) → Phase 4 (branch, commit, push, PR per repo) → Phase 5 (final report). Relay the subagent's final report to the user.

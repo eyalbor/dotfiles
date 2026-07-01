@@ -13,8 +13,7 @@ gui:
   sidePanelWidth: 0.25
   enlargedSideViewLocation: "top"
   authorColors:
-    "Dudi Elentok": "blue"
-    "David Elentok": "blue"
+    "Eyal Borovsky": "blue"
     # use blue for other authors
     "*": "white"
   branchColors:

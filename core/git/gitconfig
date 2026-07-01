@@ -1,14 +1,14 @@
 # vim: filetype=gitconfig
 # Add these lines (with your details) to ~/.dotlocal/gitconfig
 # [user]
-#   name = David Elentok
-#   email = 3david@gmail.com
+#   name = Eyal Borovsky
+#   email = you@gmail.com
 # [github]
-#   user = elentok
+#   user = eyalbor
 
-# git config --local user.name 'David Elentok'
-# git config --local user.email '3david@gmail.com'
-# git config --local github.user 'elentok'
+# git config --local user.name 'Eyal Borovsky'
+# git config --local user.email 'you@gmail.com'
+# git config --local github.user 'eyalbor'
 
 [core]
   excludesfile = ~/.dotfiles/core/git/gitignore
